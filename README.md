@@ -1,5 +1,7 @@
 # Emily Blaster 🪶
 
+Try Emily Blaster [here](https://chris-lawrie.github.io/emily_blaster/)!
+
 I recently finished reading the book [Tomorrow and Tomorrow and Tomorrow](https://en.wikipedia.org/wiki/Tomorrow,_and_Tomorrow,_and_Tomorrow), which I thoroughly enjoyed and highly recommend.
 
 In the book, one of the characters creates a video game called ‘Emily Blaster’, which is like [space invaders](https://en.wikipedia.org/wiki/Space_Invaders), but the ship is a quill, and instead of aliens you shoot lines of [Emily Dickinson](https://en.wikipedia.org/wiki/Emily_Dickinson) poems.
