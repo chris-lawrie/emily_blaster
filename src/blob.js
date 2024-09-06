@@ -6,7 +6,7 @@ function Blob(x, y) {
 
   this.show = function () {
     noStroke();
-    fill(150, 0, 255);
+    fill(0);
     ellipse(this.x, this.y, this.r * 2, this.r * 2);
   };
 
@@ -15,8 +15,9 @@ function Blob(x, y) {
   };
 
   this.hits = function (line) {
-    var d = dist(this.x, this.y, line.x, line.y);
-    if (d < this.r + line.r) {
+    var dx = abs(this.x - line.x);
+    var dy = abs(this.y - line.y);
+    if (dx < this.r + line.width && dy < this.r + line.height / 2) {
       return true;
     } else {
       return false;

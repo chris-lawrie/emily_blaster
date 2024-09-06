@@ -1,25 +1,60 @@
 var blaster;
 var lines = [];
 var blobs = [];
+var hit_lines = [];
+let all_lines = [
+  "Hope is the thing with feathers -",
+  "That perches in the soul -",
+  "And sings the tune without the words -",
+  "And never stops - at all -",
+  "And sweetest - in the Gale - is heard -",
+  "And sore must be the storm -",
+  "That could abash the little Bird",
+  "That kept so many warm -",
+  "I’ve heard it in the chillest land -",
+  "And on the strangest Sea -",
+  "Yet - never - in Extremity,",
+  "It asked a crumb - of me.",
+];
 
 function setup() {
   createCanvas(600, 600);
   blaster = new Blaster();
-  for (var i = 0; i < 6; i++) {
-    lines[i] = new Line(i * 80 + 80, 60);
+
+  let row1_y = 60;
+  let row2_y = row1_y + 150;
+
+  for (let i = 0; i < all_lines.length; i++) {
+    if (i < 6) {
+      lines[i] = new Line(i * 80 + 80, row1_y, all_lines[i]);
+    } else {
+      lines[i] = new Line((i - 6) * 80 + 80 + 40, row2_y, all_lines[i]);
+    }
   }
 }
 
 function draw() {
   background(51);
-  blaster.show();
-  blaster.move();
+
+  for (var i = 0; i < hit_lines.length; i++) {
+    fill(255);
+    noStroke();
+    textSize(15);
+    textAlign(CENTER, CENTER);
+    text(
+      hit_lines[i].line_text,
+      60 + hit_lines[i].height,
+      60 + hit_lines[i].width * i * 1.8
+    );
+  }
 
   for (var i = 0; i < blobs.length; i++) {
     blobs[i].show();
     blobs[i].move();
     for (var j = 0; j < lines.length; j++) {
       if (blobs[i].hits(lines[j])) {
+        console.log(lines[j]);
+        hit_lines.push(lines[j]);
         lines[j].evaporate();
         blobs[i].evaporate();
       }
@@ -50,6 +85,9 @@ function draw() {
       blobs.splice(i, 1);
     }
   }
+
+  blaster.show();
+  blaster.move();
 }
 
 function keyReleased() {
@@ -60,7 +98,6 @@ function keyReleased() {
 
 function keyPressed() {
   if (key === " ") {
-    console.log(blaster.x, height);
     var blob = new Blob(blaster.x, height);
     blobs.push(blob);
   }
