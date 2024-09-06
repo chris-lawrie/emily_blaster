@@ -16,6 +16,7 @@ let all_lines = [
   "Yet - never - in Extremity,",
   "It asked a crumb - of me.",
 ];
+let game_over = false;
 
 function setup() {
   createCanvas(600, 600);
@@ -88,6 +89,24 @@ function draw() {
 
   blaster.show();
   blaster.move();
+
+  if (game_over) {
+    fill(51);
+    rect(0, 0, 2 * width, 2 * height);
+    textSize(32);
+    fill(255, 0, 0);
+    textAlign(CENTER, CENTER);
+    text("☠️ Game Over ☠️", width / 2, height / 2);
+    noLoop();
+  }
+
+  if (!game_over) {
+    for (var i = 0; i < hit_lines.length; i++) {
+      if (hit_lines[i].line_text !== all_lines[i]) {
+        game_over = true;
+      }
+    }
+  }
 }
 
 function keyReleased() {
