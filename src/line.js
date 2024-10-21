@@ -13,7 +13,7 @@ function Line(x, y, line_text) {
   this.height = this.line_text.length * 9;
   this.toDelete = false;
 
-  this.xdir = 0.1;
+  this.xdir = 0.7;
 
   this.shiftDown = function () {
     this.xdir *= -1;
