@@ -1,3 +1,4 @@
+// here is some new comment :)
 var blaster;
 var lines = [];
 var blobs = [];
@@ -16,7 +17,9 @@ let all_lines = [
   "Yet - never - in Extremity,",
   "It asked a crumb - of me.",
 ];
+
 let game_over = false;
+let game_time;
 
 function setup() {
   createCanvas(600, 600);
@@ -32,10 +35,16 @@ function setup() {
       lines[i] = new Line((i - 6) * 80 + 80 + 40, row2_y, all_lines[i]);
     }
   }
+
+  // game_time = time();
 }
 
 function draw() {
   background(51);
+  stroke(255);
+  strokeWeight(5);
+  noFill();
+  rect(width / 2, height / 2, width, height);
 
   for (var i = 0; i < hit_lines.length; i++) {
     fill(255);
@@ -67,7 +76,10 @@ function draw() {
   for (var i = 0; i < lines.length; i++) {
     lines[i].show();
     lines[i].move();
-    if (lines[i].x > width || lines[i].x < 0) {
+    if (
+      lines[i].x + lines[i].width > width ||
+      lines[i].x - lines[i].width < 0
+    ) {
       edge = true;
     }
     if (lines[i].toDelete) {
@@ -117,7 +129,7 @@ function keyReleased() {
 
 function keyPressed() {
   if (key === " ") {
-    var blob = new Blob(blaster.x, height);
+    var blob = new Blob(blaster.x, height - 20);
     blobs.push(blob);
   }
 
