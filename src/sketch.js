@@ -17,6 +17,7 @@ let all_lines = [
   "Yet - never - in Extremity,",
   "It asked a crumb - of me.",
 ];
+
 let game_over = false;
 let game_time;
 
